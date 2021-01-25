@@ -1,0 +1,66 @@
+.Overlap {
+    position: relative;
+}
+
+.Front {
+    position: absolute;
+    top: 0;
+}
+
+.Back {
+    position: relative;
+}
+
+.Banner {
+    width: 100%;
+    object-fit: cover;
+    height: 300px;
+}
+
+.Poster {
+    margin: 80px 0px 20px 20px;
+}
+
+.Title {
+    margin-left: 20%;
+}
+
+.CompanyLogo {
+    margin-top: 10px;
+    margin-right: 20px;
+    width: 5%;
+}
+
+.Production{
+    margin-top: 10px;
+    margin-right: 20px;
+    width: 15%;
+    height: 50px;
+}
+
+.Info {
+    margin-top: 55px;
+}
+
+@media(max-width: 767px) {
+    .Banner {
+        height: 200px;
+    }
+    .Poster {
+        width: 50%;
+        margin-top: 90px;
+    }
+    .Title {
+        margin-left: 40%;
+    }
+    .CompanyLogo {
+        margin-right: 20px;
+        width: 15%;
+    }
+    .Info {
+        margin-top: 40px;
+    }
+    .TitleInfo {
+        font-size: 20px;
+    }
+}

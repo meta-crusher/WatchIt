@@ -1,0 +1,15 @@
+.Nav {
+    background-color: #eeeeee;
+    padding: 10px;
+}
+
+@media(max-width: 600px) {
+    .Search {
+        margin-top: 15px;
+        margin-bottom: 10px;
+    }
+}
+
+.New {
+    background-color: red;
+}

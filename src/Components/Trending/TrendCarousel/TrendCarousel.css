@@ -1,0 +1,14 @@
+.MainContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.TopList {
+    margin: 10px 5px 0px 5px;
+}
+
+.ArrowBtn {
+    cursor: pointer;
+}
