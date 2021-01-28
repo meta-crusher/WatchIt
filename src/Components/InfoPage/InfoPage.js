@@ -46,7 +46,7 @@ class InfoPage extends React.Component {
                 this.vURL = this.vURL + ip;
                 console.log(ip)
 
-                axios.post('/postURL', { "url": this.vURL })
+                axios.post('https://watchitserver.herokuapp.com/postURL', { "url": this.vURL })
                     .then((res) => {
                         console.log(res.data)
                         this.setState({
