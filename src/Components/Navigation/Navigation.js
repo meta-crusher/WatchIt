@@ -1,7 +1,7 @@
 import './Navigation.css';
 import React from 'react';
 import { Route, Link, Switch } from "react-router-dom";
-import { Nav, NavItem, InputGroup, Input, InputGroupAddon, Button, Navbar, Row, Col } from 'reactstrap';
+import { Nav, NavItem, Button, Navbar, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux';
 
 import Home from './../Home/Home';

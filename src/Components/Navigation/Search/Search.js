@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React from 'react';
-import { Container } from 'reactstrap';
 
 import SearchOptions from './SearchOptions/SearchOptions';
 

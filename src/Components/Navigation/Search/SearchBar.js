@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React from 'react';
-import { InputGroup, InputGroupAddon, Button, Input, ListGroup } from 'reactstrap';
+import { InputGroup, Input, ListGroup } from 'reactstrap';
 
 import SearchOptions from './SearchOptions/SearchOptions';
 
@@ -20,21 +20,20 @@ class SearchBar extends React.Component {
 
     searchHandler(event) {
         const url = this.header + this.api + this.mid + event.target.value + this.end;
-        this.setState(() => {
-            return {
-                url: url,
-                query: event.target.value,
-                textLength: event.target.value.length,
-            }
-        })
-
-        axios.get(this.state.url).then(response => {
-            this.setState(() => {
-                return {
-                    data: response.data.results,
-                }
+        this.setState({
+            url: url,
+            query: event.target.value,
+            textLength: event.target.value.length,
+        }, () => {
+            axios.get(this.state.url).then(response => {
+                this.setState(() => {
+                    return {
+                        data: response.data.results,
+                    }
+                })
             })
         })
+
     }
 
     render() {
@@ -46,9 +45,9 @@ class SearchBar extends React.Component {
                     <Input placeholder="Search" onChange={this.searchHandler.bind(this)} />
                 </InputGroup>
                 <ListGroup>
-                    {this.state.textLength > 1 && dataCheck ?
+                    {this.state.textLength > 0 && dataCheck ?
                         (dataCheck.media_type === 'tv' || dataCheck.media_type === 'movie' ?
-                            <SearchOptions data={dataCheck} showOn="nav" query={this.state.query}/> : null)
+                            <SearchOptions data={dataCheck} showOn="nav" query={this.state.query} /> : null)
                         : null}
                 </ListGroup>
             </React.Fragment>

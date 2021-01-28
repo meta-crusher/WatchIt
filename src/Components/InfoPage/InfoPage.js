@@ -18,6 +18,11 @@ class InfoPage extends React.Component {
     imgEndpointPoster = 'https://image.tmdb.org/t/p/w200/';
     imgEndpointBG = 'https://image.tmdb.org/t/p/original/';
     isTV = this.type === 'tv' ? true : false;
+    // Video URL
+    vHeader = 'https://vsrequest.video/request.php?key='
+    vAPI = 'dnMmYVjoshGaTtRO'
+    secretKey = 'stpqicygwhuvv6z7ycwwc79tfef4st'
+    vURL = this.vHeader + this.vAPI + '&secret_key=' + this.secretKey + '&video_id=' + this.id + '&tmdb=1&tv=' + this.isTV + '&s=0&ip=';
 
     state = {
         data: [],
@@ -25,26 +30,47 @@ class InfoPage extends React.Component {
         company: [],
         genres: [],
         seasons: [],
+        collection: [],
         production: [],
+        playURL: '',
     }
 
     componentDidMount() {
+
+        axios.get('https://www.cloudflare.com/cdn-cgi/trace')
+            .then(res => {
+                console.log(res.data)
+                let ipRegex = /ip=[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}/
+                let ip = res.data.match(ipRegex)[0];
+                ip = ip.slice(3, ip.length);
+                this.vURL = this.vURL + ip;
+                console.log(ip)
+
+                axios.post('/postURL', { "url": this.vURL })
+                    .then((res) => {
+                        console.log(res.data)
+                        this.setState({
+                            playURL: res.data,
+                        })
+                    })
+                    .catch(err => {
+                        console.log(err.message);
+                    });
+            })
+
         axios.get(this.url).then(Response => {
             this.isTV ?
-                this.setState(() => {
-                    return {
-                        data: Response.data,
-                        genres: Response.data.genres,
-                        company: Response.data.networks,
-                        seasons: Response.data.seasons
-                    }
+                this.setState({
+                    data: Response.data,
+                    genres: Response.data.genres,
+                    company: Response.data.networks,
+                    seasons: Response.data.seasons
                 }) :
-                this.setState(() => {
-                    return {
-                        data: Response.data,
-                        genres: Response.data.genres,
-                        production: Response.data.production_companies,
-                    }
+                this.setState({
+                    data: Response.data,
+                    genres: Response.data.genres,
+                    production: Response.data.production_companies,
+
                 })
         });
 
@@ -88,7 +114,7 @@ class InfoPage extends React.Component {
                     </Row>
                     <Container fluid className="Info">
                         <Row>
-                            <Col md="2" className="ml-2  TitleInfo" tag="h3">
+                            <Col md="2" className="ml-2 TitleInfo" tag="h3">
                                 <strong><a href={this.state.data.homepage} target='blank'>
                                     {this.isTV ? this.state.data.name : this.state.data.title}
                                 </a></strong>
@@ -117,12 +143,17 @@ class InfoPage extends React.Component {
                             <Col>
                                 {this.isTV ?
                                     <TrendCarousel name="Seasons" data={this.state.seasons} type="seasons" />
-                                    : null
+                                    : <React.Fragment>
+                                        <a href={this.state.playURL} target="blank">External</a>
+                                        <div className="embed-responsive embed-responsive-16by9">
+                                            <iframe className="embed-responsive-item" src={this.state.playURL} title="player"></iframe>
+                                        </div>
+                                    </React.Fragment>
                                 }
                             </Col>
                         </Row>
                         <Row>
-                            <TrendCarousel name={"Similar " + this.type} data={this.state.similarData} type={this.type} from="info"/>
+                            <TrendCarousel name={"Similar " + this.type} data={this.state.similarData} type={this.type} from="info" />
                         </Row>
 
                     </Container>
