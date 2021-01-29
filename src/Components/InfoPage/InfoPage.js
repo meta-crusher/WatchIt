@@ -37,18 +37,12 @@ class InfoPage extends React.Component {
 
     componentDidMount() {
 
-        axios.get('https://www.cloudflare.com/cdn-cgi/trace')
+        axios.get('https://jsonip.com/')
             .then(res => {
-                console.log(res.data)
-                let ipRegex = /ip=[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}/
-                let ip = res.data.match(ipRegex)[0];
-                ip = ip.slice(3, ip.length);
-                this.vURL = this.vURL + ip;
-                console.log(ip)
+                this.vURL = this.vURL + res.data.ip;
 
                 axios.post('https://watchitserver.herokuapp.com/postURL', { "url": this.vURL })
                     .then((res) => {
-                        console.log(res.data)
                         this.setState({
                             playURL: res.data,
                         })
@@ -112,6 +106,11 @@ class InfoPage extends React.Component {
                     <Row>
                         <Media className="CompanyLogo ml-auto" src={mediaURL} />
                     </Row>
+                    {this.isModal ?
+                        <div className="ModalLink">
+                            This is modal
+                    </div> : null
+                    }
                     <Container fluid className="Info">
                         <Row>
                             <Col md="2" className="ml-2 TitleInfo" tag="h3">
@@ -153,7 +152,7 @@ class InfoPage extends React.Component {
                             </Col>
                         </Row>
                         <Row>
-                            <TrendCarousel name={"Similar " + this.type} data={this.state.similarData} type={this.type} from="info" />
+                            <TrendCarousel name={"Similar " + this.type} data={this.state.similarData} type={this.type} from="info"/>
                         </Row>
 
                     </Container>
