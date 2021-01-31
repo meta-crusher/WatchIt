@@ -1,0 +1,12 @@
+.epBlock {
+    margin-bottom: 10px;
+}
+
+@media(max-width:768px) {
+    .episodeText {
+        margin-top: 20px;
+    }
+    .epBlock {
+        margin-bottom: 20px;
+    }
+}

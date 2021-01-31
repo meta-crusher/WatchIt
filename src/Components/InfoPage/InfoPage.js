@@ -4,7 +4,6 @@ import React from 'react';
 import { Container, Row, Col, CardImg, Media, Card, CardBody, CardTitle, Badge } from 'reactstrap';
 import axios from 'axios';
 
-import { movieAPI } from "./../../Reusable/movieAPI";
 import TrendCarousel, { } from './../Trending/TrendCarousel/TrendCarousel';
 
 class InfoPage extends React.Component {

@@ -1,0 +1,15 @@
+.SeasonImg {
+    width: 70%;
+}
+
+.SeasonText {}
+
+@media(max-width:768px) {
+    .SeasonImg {
+        width: 100%;
+    }
+
+    .SeasonText {
+        margin-top: 20px;
+    }
+}
