@@ -33,7 +33,6 @@ class Search extends React.Component {
                 content.media_type === 'tv' || content.media_type === 'movie' ? <SearchOptions data={content} /> : null
             );
         }) : null;
-        <SearchOptions />
         return (
             <React.Fragment>
                 {searchItems}

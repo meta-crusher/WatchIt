@@ -4,6 +4,7 @@ import React from 'react';
 import { Container, Row, Col, CardImg, Media, Card, CardBody, CardTitle, Badge } from 'reactstrap';
 import axios from 'axios';
 
+import { movieAPI } from "./../../Reusable/movieAPI";
 import TrendCarousel, { } from './../Trending/TrendCarousel/TrendCarousel';
 
 class InfoPage extends React.Component {
@@ -18,6 +19,7 @@ class InfoPage extends React.Component {
     imgEndpointPoster = 'https://image.tmdb.org/t/p/w200/';
     imgEndpointBG = 'https://image.tmdb.org/t/p/original/';
     isTV = this.type === 'tv' ? true : false;
+
     // Video URL
     vHeader = 'https://vsrequest.video/request.php?key='
     vAPI = 'dnMmYVjoshGaTtRO'
@@ -34,6 +36,8 @@ class InfoPage extends React.Component {
         production: [],
         playURL: '',
     }
+
+
 
     componentDidMount() {
 
@@ -106,11 +110,6 @@ class InfoPage extends React.Component {
                     <Row>
                         <Media className="CompanyLogo ml-auto" src={mediaURL} />
                     </Row>
-                    {this.isModal ?
-                        <div className="ModalLink">
-                            This is modal
-                    </div> : null
-                    }
                     <Container fluid className="Info">
                         <Row>
                             <Col md="2" className="ml-2 TitleInfo" tag="h3">
@@ -141,7 +140,7 @@ class InfoPage extends React.Component {
                             </Col>
                             <Col>
                                 {this.isTV ?
-                                    <TrendCarousel name="Seasons" data={this.state.seasons} type="seasons" />
+                                    <TrendCarousel name="Seasons" data={this.state.seasons} tv_id={this.id} type="seasons" />
                                     : <React.Fragment>
                                         <a href={this.state.playURL} target="blank">External</a>
                                         <div className="embed-responsive embed-responsive-16by9">
@@ -152,7 +151,7 @@ class InfoPage extends React.Component {
                             </Col>
                         </Row>
                         <Row>
-                            <TrendCarousel name={"Similar " + this.type} data={this.state.similarData} type={this.type} from="info"/>
+                            <TrendCarousel name={"Similar " + this.type} data={this.state.similarData} type={this.type} from="info" />
                         </Row>
 
                     </Container>

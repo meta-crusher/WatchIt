@@ -10,6 +10,7 @@ import OTT from './../OTT/OTT';
 import Trending from './../Trending/Trending';
 import NavOptions from './NavOptions/NavOptions';
 import InfoPage from './../InfoPage/InfoPage';
+import TvSeasons from './../TvSeasons/TvSeasons';
 import SearchBar from './Search/SearchBar';
 import Search from './Search/Search';
 
@@ -72,6 +73,7 @@ class Navigation extends React.Component {
                     <Route exact path='/Disney+' component={OTT} />
                     <Route exact path='/Search/:query' component={Search}/>
                     <Route exact path ='/:type/:id' component={InfoPage}/>
+                    <Route exact path ='/tv/:seriesid/:seasonid' component={TvSeasons}/>
                 </Switch>
             </React.Fragment>
         );

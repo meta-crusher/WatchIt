@@ -32,11 +32,10 @@ const TrendCarousel = props => {
             <TrendMovies
                 key={content.id}
                 id={content.id}
-                title={content.title}
                 img={content.poster_path}
-                votes={content.vote_average}
                 type={props.type}
-                from={props.from}
+                seasonNumber = {props.type === 'seasons' ? content.season_number : false}
+                tv_id = {props.type === 'seasons' ? props.tv_id : false}
             />
         );
     }) : null
