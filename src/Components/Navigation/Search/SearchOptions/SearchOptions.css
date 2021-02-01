@@ -1,16 +1,18 @@
-.SearchList{
+.SearchList {
     position: absolute;
     z-index: 10;
 }
 
-.SearchPosterImg{
+.SearchPosterImg {
     object-fit: cover;
     height: 100px;
 }
 
-.ResultTag{
+.ResultTag {
     /* margin-top:10px; */
     margin-bottom: -1px;
 }
 
-
+/* .SearchLink:hover {
+    color: #545454;
+} */

@@ -1,5 +1,7 @@
+import './HomeOptions.css'
+
 import React from 'react';
-import { Nav, Navbar } from 'reactstrap';
+import { Col, Nav, Navbar, Row } from 'reactstrap';
 import axios from 'axios';
 
 import TrendCarousel from './../../Trending/TrendCarousel/TrendCarousel';
@@ -58,7 +60,7 @@ class HomeOptions extends React.Component {
     render() {
         const showOptions = this.currArrTitle.map((content, index) => {
             return (
-                <div key={index} className="mr-3" onClick={this.showOptionsHandler.bind(this, index)}>
+                <div key={index} className={" OptionsHome " + (this.state.currActive === ('o' + index.toString()) ? "SelectedHome" : "")} onClick={this.showOptionsHandler.bind(this, index)}>
                     {content}
                 </div>
             );
@@ -67,9 +69,16 @@ class HomeOptions extends React.Component {
         return (
             <React.Fragment>
                 <Navbar>
-                    <Nav>
-                        {showOptions}
-                    </Nav>
+                    <Row>
+                        <Col tag="h5" xs="12" md="12">
+                            Watch {this.props.type}
+                        </Col>
+                        <Col md="10">
+                            <Nav className="HomeNavOptions">
+                                {showOptions}
+                            </Nav>
+                        </Col>
+                    </Row>
                     <TrendCarousel data={this.state[this.state.currActive]} type={this.props.type} />
                 </Navbar>
             </React.Fragment>

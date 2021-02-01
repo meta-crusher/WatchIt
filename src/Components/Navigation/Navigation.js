@@ -1,4 +1,5 @@
 import './Navigation.css';
+import logo from './../../assets/logo/logo_text.png'
 
 import React from 'react';
 import { Route, Link, Switch } from "react-router-dom";
@@ -41,16 +42,16 @@ class Navigation extends React.Component {
                 <Navbar className="Nav">
                     <Nav className="container-fluid" >
                         <Col sm="" md="3" >
-                            <NavItem >
-                                <Link to="/">Home</Link>
-                                {this.props.isMobile ? null : <Button className="float-right" onClick={this.showContentHandler.bind(this)}><i className="fas fa-bars"></i></Button>}
+                            <NavItem>
+                                <Link to="/"><img className="NavLogo" src={logo} /></Link>
+                                {this.props.isMobile ? null : <Button className="Btn_Menu float-right" onClick={this.showContentHandler.bind(this)}><i className="fas fa-bars"></i></Button>}
                             </NavItem>
                         </Col>
                         {this.state.showContent ? <React.Fragment>
                             <React.Fragment>
                                 <Col sm="" md="3">
                                     <NavItem className="ml-auto mr-auto ">
-                                        <SearchBar/>
+                                        <SearchBar />
                                     </NavItem>
                                 </Col>
                                 <Col sm="" md="4">
@@ -71,9 +72,9 @@ class Navigation extends React.Component {
                     <Route exact path='/Netflix' component={OTT} />
                     <Route exact path='/Prime' component={OTT} />
                     <Route exact path='/Disney+' component={OTT} />
-                    <Route exact path='/Search/:query' component={Search}/>
-                    <Route exact path ='/:type/:id' component={InfoPage}/>
-                    <Route exact path ='/tv/:seriesid/:seasonid' component={TvSeasons}/>
+                    <Route exact path='/Search/:query' component={Search} />
+                    <Route exact path='/:type/:id' component={InfoPage} />
+                    <Route exact path='/tv/:seriesid/:seasonid' component={TvSeasons} />
                 </Switch>
             </React.Fragment>
         );

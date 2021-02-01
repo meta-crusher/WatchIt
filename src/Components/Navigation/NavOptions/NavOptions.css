@@ -1,13 +1,24 @@
 a:hover {
     text-decoration: none;
+    color: #545454;
+}
+
+a {
+    color: #3b3b3b;
 }
 
 .active {
-    background-color: #cccfff;
+    background-color: #272643;
+    color: white;
 }
 
 .activeInherit {
+    color: white;
     background-color: inherit;
+    border-radius: 10px;
     padding: 10px;
-    /* font-family:'Yusei Magic'; */
+}
+
+.activeInherit:hover{
+    color: white;
 }

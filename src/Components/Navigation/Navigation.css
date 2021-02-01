@@ -1,6 +1,13 @@
 .Nav {
-    background-color: #eeeeee;
+    background-color: #2c698d;
     padding: 10px;
+    --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    border-bottom: 1px solid #bae8e8;
+}
+
+.NavLogo {
+    width: 30%;
 }
 
 @media(max-width: 600px) {
@@ -8,6 +15,14 @@
         margin-top: 15px;
         margin-bottom: 10px;
     }
+}
+
+.Btn_Menu {
+    background-color: #272643;
+}
+
+.Btn_Menu:hover {
+    background-color: #272643;
 }
 
 .New {
