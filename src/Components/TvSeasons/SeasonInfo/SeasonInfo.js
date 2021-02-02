@@ -1,16 +1,18 @@
 import './SeasonInfo.css';
+import noImgBanner from './../../../assets/movIMG/noImgBanner.jpg'
 
 import { Col, CardImg, Row, Badge } from "reactstrap";
 
 const SeasonInfo = props => {
 
-    const imgEndpoint = 'https://image.tmdb.org/t/p/w500/';
+    const img = props.data ? props.data.still_path : null;
+    const imgURL = img != null ? ('https://image.tmdb.org/t/p/w500/' + img) : noImgBanner;
 
     return (
         <Row className="epBlock">
             
             <Col xs="10" md="3" className="ml-md-5 ml-auto mr-auto">
-                <CardImg src={imgEndpoint + (props.data ? props.data.still_path : null)} />
+                <CardImg className="epIMG" src={imgURL} />
             </Col>
             <Col xs="10" md="" className="episodeText ml-auto mr-auto">
                 <Col xs="1"></Col>

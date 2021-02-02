@@ -1,4 +1,5 @@
 import './TvSeasons.css';
+import noImgPoster from './../../assets/movIMG/noImgPoster.jpg';
 
 import axios from 'axios';
 import React from 'react';
@@ -56,22 +57,24 @@ class TvSeasons extends React.Component {
     render() {
         const episodes = this.state.episodes ? this.state.episodes.map((content, index) => {
             return (
-                <SeasonInfo key={index} data={content} id={this.id} vURL={this.state.playURL + '&e='+ (index+1)} />
+                <SeasonInfo key={index} data={content} id={this.id} vURL={this.state.playURL + '&e=' + (index + 1)} />
             )
         }) : null;
         return (
             <React.Fragment>
-                <Jumbotron>
+                <Jumbotron className="SeasonInfoMain">
                     <Row>
                         <Col xs="6" md="2" >
-                            <CardImg className="SeasonImg" src={this.imgEndpoint + this.state.data.poster_path} />
+                            <CardImg
+                                className="SeasonImg"
+                                src={this.state.data.poster_path != null ? (this.imgEndpoint + this.state.data.poster_path) : noImgPoster} />
                         </Col>
                         <Col xs="12" md="" className="SeasonText">
                             <h4><p>{this.state.data.name}</p></h4>
                             <p>
                                 {this.state.data.overview}
                             </p>
-                            <p><strong>Aired on: </strong>{this.state.data.air_date}</p>
+                            <p><strong>Aired On: </strong>{this.state.data.air_date}</p>
                         </Col>
                     </Row>
                 </Jumbotron>

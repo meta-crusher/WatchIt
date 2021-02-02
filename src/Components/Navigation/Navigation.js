@@ -57,9 +57,8 @@ class Navigation extends React.Component {
                                 <Col sm="" md="4">
                                     <Row>
                                         <NavOptions name="Trending" />
-                                        <NavOptions name="Netflix" />
-                                        <NavOptions name="Prime" />
-                                        <NavOptions name="Disney+" />
+                                        <NavOptions name="WatchList" />
+                                        <NavOptions name="SwitchMode" />
                                     </Row>
                                 </Col>
                             </React.Fragment>
@@ -69,9 +68,7 @@ class Navigation extends React.Component {
                 <Switch>
                     <Route exact path='/' component={Home} />
                     <Route exact path='/Trending' component={Trending} />
-                    <Route exact path='/Netflix' component={OTT} />
-                    <Route exact path='/Prime' component={OTT} />
-                    <Route exact path='/Disney+' component={OTT} />
+                    <Route exact path='/WatchList' component={OTT} />
                     <Route exact path='/Search/:query' component={Search} />
                     <Route exact path='/:type/:id' component={InfoPage} />
                     <Route exact path='/tv/:seriesid/:seasonid' component={TvSeasons} />

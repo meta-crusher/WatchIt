@@ -1,4 +1,7 @@
 import './InfoPage.css';
+import noImgBanner from './../../assets/movIMG/noImgBanner.jpg';
+import noImgPoster from './../../assets/movIMG/noImgPoster.jpg';
+import logo from './../../assets/logo/logo.png';
 
 import React from 'react';
 import { Container, Row, Col, CardImg, Media, Card, CardBody, CardTitle, Badge } from 'reactstrap';
@@ -87,8 +90,8 @@ class InfoPage extends React.Component {
             );
         }) : null
 
-        const checkMovieMedia = this.imgEndpointPoster + (this.state.production[0] ? this.state.production[0].logo_path : null);
-        const checkTvMedia = this.imgEndpointPoster + (this.state.company[0] ? this.state.company[0].logo_path : null);
+        const checkMovieMedia = this.state.production[0] ? (this.state.production[0].logo_path != null ? (this.imgEndpointPoster + this.state.production[0].logo_path) : logo) : logo;
+        const checkTvMedia = this.state.company[0] ? (this.state.company[0].logo_path != null ? (this.imgEndpointPoster + this.state.company[0].logo_path) : logo) : logo;
         const mediaURL = this.isTV ? checkTvMedia : checkMovieMedia;
 
         return (
@@ -96,13 +99,16 @@ class InfoPage extends React.Component {
                 <Container fluid className="Overlap ">
                     <Row className="Back">
                         <Col md="12">
-                            <Media className="Banner" src={this.imgEndpointBG + this.state.data.backdrop_path} />
+                            <Media
+                                className="Banner"
+                                src={this.state.data.poster_path != null ? (this.imgEndpointBG + this.state.data.poster_path) : noImgBanner} />
                         </Col>
                     </Row>
                     <Row className="Front">
                         <Col md="12">
-                            <Card className="Poster">
-                                <CardImg className="PosterImg" src={this.imgEndpointPoster + this.state.data.poster_path} />
+                            <Card className={this.state.data.poster_path != null ? "Poster" : "noPosterImg"}>
+                                <CardImg
+                                    src={this.state.data.poster_path != null ? (this.imgEndpointPoster + this.state.data.poster_path) : noImgPoster} />
                             </Card>
                         </Col>
                     </Row>

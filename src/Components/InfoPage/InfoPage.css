@@ -21,6 +21,11 @@
     margin: 80px 0px 20px 20px;
 }
 
+.noPosterImg {
+    margin: 80px 0px 20px 20px;
+    width: 20%;
+}
+
 .Title {
     margin-left: 20%;
 }
@@ -53,6 +58,10 @@
     }
     .Poster {
         width: 50%;
+        margin-top: 90px;
+    }
+    .noPosterImg {
+        width: 30%;
         margin-top: 90px;
     }
     .Title {

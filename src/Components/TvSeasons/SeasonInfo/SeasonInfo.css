@@ -1,12 +1,20 @@
 .epBlock {
-    margin-bottom: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-bottom: 1px solid #bfbfbf;
+}
+
+.epBlock:hover{
+    background-color: #E6E6E6;
+}
+
+.epIMG:hover{
+    --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 @media(max-width:768px) {
     .episodeText {
         margin-top: 20px;
-    }
-    .epBlock {
-        margin-bottom: 20px;
     }
 }

@@ -4,7 +4,29 @@
     padding: 10px;
 }
 
+.ThumbnailBtn {
+    border: 2px solid white;
+    background-color: #545454;
+    opacity: 0.8;
+}
+
+.ThumbnailBtn:hover {
+    background-color: #3b3b3b;
+    border: 2px solid white;
+}
+
 .ThumbnailCard:hover {
+    opacity: 0.9;
     --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+@media(max-width:768px) {
+    .ThumbnailBtn{
+        font-size: small;
+        border: 2px solid white;
+        background-color: #545454;
+        opacity: 0.8;
+        margin-bottom: 10px;
+    }
 }

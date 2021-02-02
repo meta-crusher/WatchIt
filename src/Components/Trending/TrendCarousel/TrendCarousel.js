@@ -34,18 +34,24 @@ const TrendCarousel = props => {
                 id={content.id}
                 img={content.poster_path}
                 type={props.type}
-                seasonNumber = {props.type === 'seasons' ? content.season_number : false}
-                tv_id = {props.type === 'seasons' ? props.tv_id : false}
+                seasonNumber={props.type === 'seasons' ? content.season_number : false}
+                seasonName={props.type === 'seasons' || props.type === 'tv' ? content.name : null}
+                movieName={props.type === 'movie' ? content.title : null}
+                tv_id={props.type === 'seasons' ? props.tv_id : false}
             />
         );
     }) : null
 
     return (
         <React.Fragment>
-            <Container className=" TopList">
-                <strong>{props.name}</strong>
+            <Container fluid>
+                <Row className=" TopList">
+                    <Col tag="h5">
+                        {props.name}
+                    </Col>
+                </Row>
             </Container>
-            <div className="MainContainer">
+            <div className={counter !== 1 ? "MainContainer" : ""}>
                 <Col className="ArrowBtn" style={counter > size ? { visibility: "visible" } : { visibility: "hidden" }}>
                     <h1><i className="fas fa-angle-left" onClick={() => { counter > size ? setCounter(counter - 1) : setCounter(counter) }}></i></h1>
                 </Col>

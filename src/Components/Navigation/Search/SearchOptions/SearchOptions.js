@@ -10,7 +10,7 @@ const SearchOptions = props => {
 
     return (
         <ListGroupItem
-            className={props.showOn === "nav" ? "SearchList" : ""}>
+            className={props.showOn === "nav" ? "SearchList" : "SearchOptionsItems"}>
             <a href={'/' + props.data.media_type + '/' + props.data.id} className="SearchLink">
                 <Row>
                     <Col xs="4" md={props.showOn !== "nav" ? "1" : "4"}>
