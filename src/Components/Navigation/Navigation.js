@@ -7,8 +7,8 @@ import { Nav, NavItem, Button, Navbar, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux';
 
 import Home from './../Home/Home';
-import OTT from './../OTT/OTT';
 import Trending from './../Trending/Trending';
+import Watchlist from './../Watchlist/Watchlist';
 import NavOptions from './NavOptions/NavOptions';
 import InfoPage from './../InfoPage/InfoPage';
 import TvSeasons from './../TvSeasons/TvSeasons';
@@ -68,7 +68,7 @@ class Navigation extends React.Component {
                 <Switch>
                     <Route exact path='/' component={Home} />
                     <Route exact path='/Trending' component={Trending} />
-                    <Route exact path='/WatchList' component={OTT} />
+                    <Route exact path='/WatchList' component={Watchlist} />
                     <Route exact path='/Search/:query' component={Search} />
                     <Route exact path='/:type/:id' component={InfoPage} />
                     <Route exact path='/tv/:seriesid/:seasonid' component={TvSeasons} />

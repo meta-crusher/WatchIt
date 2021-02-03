@@ -22,12 +22,6 @@ class HomeOptions extends React.Component {
         this.menu = this.props.menu === 'trending' ? 'trending/' : '';
         this.type = this.props.type + '/'
         this.api = '?api_key=db247c4fb5373ec3fc33ba76868459bb&language=en-US'
-        // this.movieArr = ['now_playing', 'popular', 'top_rated', 'upcoming']
-        // this.movieArrTitle = ['Now Playing', 'Popular', 'Top Rated', 'Upcoming']
-        // this.tvArr = ['airing_today', 'on_the_air', 'popular', 'top_rated']
-        // this.tvArrTitle = ['Airing Today', 'On The Air', 'Popular', 'Top Rated']
-        // this.currArr = this.props.type === 'tv' ? this.tvArr : this.movieArr;
-        // this.currArrTitle = this.props.type === 'tv' ? this.tvArrTitle : this.movieArrTitle;
         this.currArr = this.props.Arr;
         this.currArrTitle = this.props.ArrTitle;
         this.url = []

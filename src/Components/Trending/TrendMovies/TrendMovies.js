@@ -3,15 +3,8 @@ import noImgPoster from "./../../../assets/movIMG/noImgPoster.jpg";
 import { Col, Card, CardImg, CardTitle, Button, CardImgOverlay, Row } from 'reactstrap';
 import { useState } from 'react';
 
-const watchHandler = (props) => {
-    // localStorage[props.type] = 
-    let arr = [];
-    [...arr] = [localStorage.getItem(props.type)]
-    arr.push(props.id)
-    localStorage.setItem(props.type,arr);
-    // localStorage.removeItem(props.type);
-    console.log(localStorage.getItem(props.type))
-}
+import WatchBtn from './../../Watchlist/WatchBtn/WatchBtn';
+
 
 const TrendMovies = props => {
     const imgURL = props.img != null ? ("https://image.tmdb.org/t/p/w500/" + props.img) : noImgPoster;
@@ -23,19 +16,20 @@ const TrendMovies = props => {
 
     return (
         <Col xs="6" md="2" className="Thumbnail" onMouseEnter={() => setWatch(!watch)} onMouseLeave={() => setWatch(!watch)}>
-
             <Card className="ThumbnailCard" >
                 {
                     watch ? <CardImgOverlay>
                         <Row>
-                            <Col className="mb-md-3">
+                            <Col md="12" className="mb-md-3">
                                 <a href={isSeason ? seasonURL : linkURL}>
                                     <Button className="ThumbnailBtn">Open</Button>
                                 </a>
                             </Col>
-                            <Col className="align-bottom">
-                                <Button className="ThumbnailBtn" onClick={() => watchHandler(props)}>Wachlist</Button>
-                            </Col>
+                            { !isSeason ?
+                            <Col md="12" className="align-bottom">
+                                <WatchBtn type={props.type} id={props.id} />
+                            </Col> : null
+                            }
                         </Row>
                     </CardImgOverlay> : null
                 }

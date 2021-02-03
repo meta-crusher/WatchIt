@@ -8,6 +8,7 @@ import { Container, Row, Col, CardImg, Media, Card, CardBody, CardTitle, Badge }
 import axios from 'axios';
 
 import TrendCarousel, { } from './../Trending/TrendCarousel/TrendCarousel';
+import WatchBtn from './../Watchlist/WatchBtn/WatchBtn';
 
 class InfoPage extends React.Component {
 
@@ -142,6 +143,7 @@ class InfoPage extends React.Component {
                                         }
                                     </CardBody>
                                 </Card>
+                                <WatchBtn type={this.type} id={this.id} />
                             </Col>
                             <Col>
                                 {this.isTV ?
