@@ -3,6 +3,7 @@ import './HomeOptions.css'
 import React from 'react';
 import { Col, Nav, Navbar, Row } from 'reactstrap';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 import TrendCarousel from './../../Trending/TrendCarousel/TrendCarousel';
 
@@ -55,9 +56,12 @@ class HomeOptions extends React.Component {
     }
 
     render() {
+        const darkOP = "DarkOptionsHome ", darkSH = "DarkSelectedHome", darkHNO = "DarkHomeNavOptions";
+        const liteOP = "OptionsHome ", liteSH = "SelectedHome", liteHNO = "HomeNavOptions";
+        const OP = this.props.theme ? liteOP : darkOP, SH = this.props.theme ? liteSH : darkSH, HNO = this.props.theme ? liteHNO : darkHNO;
         const showOptions = this.currArrTitle.map((content, index) => {
             return (
-                <div key={index} className={" OptionsHome " + (this.state.currActive === ('o' + index.toString()) ? "SelectedHome" : "")} onClick={this.showOptionsHandler.bind(this, index)}>
+                <div key={index} className={OP + (this.state.currActive === ('o' + index.toString()) ? SH : "")} onClick={this.showOptionsHandler.bind(this, index)}>
                     {content}
                 </div>
             );
@@ -71,7 +75,7 @@ class HomeOptions extends React.Component {
                             {this.props.menu === "trending" ? <div>Trending {this.props.type}</div> : <div>Watch latest {this.props.type}</div>}
                         </Col>
                         <Col md="10">
-                            <Nav className="HomeNavOptions">
+                            <Nav className={HNO}>
                                 {showOptions}
                             </Nav>
                         </Col>
@@ -84,4 +88,9 @@ class HomeOptions extends React.Component {
 
 }
 
-export default HomeOptions;
+const mapStateToProps = (state) => {
+    return {
+        theme: state.theme,
+    }
+}
+export default connect(mapStateToProps)(HomeOptions);

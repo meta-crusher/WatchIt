@@ -4,8 +4,9 @@ import noImgPoster from './../../assets/movIMG/noImgPoster.jpg';
 import logo from './../../assets/logo/logo.png';
 
 import React from 'react';
-import { Container, Row, Col, CardImg, Media, Card, CardBody, CardTitle, Badge } from 'reactstrap';
+import { Container, Row, Col, CardImg, Media, Card, CardBody, CardTitle, Badge, Button } from 'reactstrap';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 import TrendCarousel, { } from './../Trending/TrendCarousel/TrendCarousel';
 import WatchBtn from './../Watchlist/WatchBtn/WatchBtn';
@@ -18,6 +19,7 @@ class InfoPage extends React.Component {
     api = 'db247c4fb5373ec3fc33ba76868459bb';
     tail = '&language=en-US';
     similarURL = this.endpoint + this.type + '/' + this.id + '/similar?api_key=' + this.api + this.tail;
+    recommendURL = this.endpoint + this.type + '/' + this.id + '/recommendations?api_key=' + this.api + this.tail;
     url = this.endpoint + this.type + '/' + this.id + '?api_key=' + this.api + this.tail;
     imgEndpointPoster = 'https://image.tmdb.org/t/p/w200/';
     imgEndpointBG = 'https://image.tmdb.org/t/p/original/';
@@ -32,6 +34,7 @@ class InfoPage extends React.Component {
     state = {
         data: [],
         similarData: [],
+        recommendData: [],
         company: [],
         genres: [],
         seasons: [],
@@ -82,6 +85,14 @@ class InfoPage extends React.Component {
                 }
             })
         })
+
+        axios.get(this.recommendURL).then(Response => {
+            this.setState(() => {
+                return {
+                    recommendData: Response.data.results,
+                }
+            })
+        })
     }
 
     render() {
@@ -94,6 +105,10 @@ class InfoPage extends React.Component {
         const checkMovieMedia = this.state.production[0] ? (this.state.production[0].logo_path != null ? (this.imgEndpointPoster + this.state.production[0].logo_path) : logo) : logo;
         const checkTvMedia = this.state.company[0] ? (this.state.company[0].logo_path != null ? (this.imgEndpointPoster + this.state.company[0].logo_path) : logo) : logo;
         const mediaURL = this.isTV ? checkTvMedia : checkMovieMedia;
+        const darkStyle = { background: "#404040" }, liteStyle = { background: "white" }
+        const darkLinkStyle = { color: "white" }, liteLinkStyle = { color: "#545454" }
+        const style = this.props.theme ? liteStyle : darkStyle;
+        const linkStyle = this.props.theme ? liteLinkStyle : darkLinkStyle;
 
         return (
             <React.Fragment>
@@ -119,7 +134,7 @@ class InfoPage extends React.Component {
                     <Container fluid className="Info">
                         <Row>
                             <Col md="2" className="ml-2 TitleInfo" tag="h3">
-                                <strong><a href={this.state.data.homepage} target='blank'>
+                                <strong><a href={this.state.data.homepage} style={linkStyle} target='blank'>
                                     {this.isTV ? this.state.data.name : this.state.data.title}
                                 </a></strong>
                             </Col>
@@ -128,7 +143,7 @@ class InfoPage extends React.Component {
                         <Row>
                             <Col md="2" className="mt-3 mr-2">
                                 <Card className="ml-auto">
-                                    <CardBody>
+                                    <CardBody style={style}>
                                         {badges}
                                         <CardTitle className="mt-2"><strong>Popularity </strong><Badge color="danger">{this.state.data.vote_average}</Badge></CardTitle>
                                         {this.isTV ? <React.Fragment>
@@ -143,16 +158,23 @@ class InfoPage extends React.Component {
                                         }
                                     </CardBody>
                                 </Card>
-                                <WatchBtn type={this.type} id={this.id} />
+                                <Col className="mt-2">
+                                    <WatchBtn type={this.type} id={this.id} />
+                                    {this.isTV ? null :
+                                        <a href={this.state.playURL} target="blank">
+                                            <Button className="ThumbnailBtn ml-3">Play</Button>
+                                        </a>
+                                    }
+                                </Col>
                             </Col>
                             <Col>
                                 {this.isTV ?
                                     <TrendCarousel name="Seasons" data={this.state.seasons} tv_id={this.id} type="seasons" />
                                     : <React.Fragment>
-                                        <a href={this.state.playURL} target="blank">External</a>
-                                        <div className="embed-responsive embed-responsive-16by9">
+                                        {/* <div className="embed-responsive embed-responsive-16by9">
                                             <iframe className="embed-responsive-item" src={this.state.playURL} title="player"></iframe>
-                                        </div>
+                                        </div> */}
+                                        <TrendCarousel name={"Recommend " + this.type} data={this.state.recommendData} type={this.type} from="info" />
                                     </React.Fragment>
                                 }
                             </Col>
@@ -168,4 +190,10 @@ class InfoPage extends React.Component {
     }
 }
 
-export default InfoPage;
+const mapStateToProps = state => {
+    return {
+        theme: state.theme,
+    }
+}
+
+export default connect(mapStateToProps)(InfoPage);

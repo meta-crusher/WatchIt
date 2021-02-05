@@ -14,6 +14,7 @@ import InfoPage from './../InfoPage/InfoPage';
 import TvSeasons from './../TvSeasons/TvSeasons';
 import SearchBar from './Search/SearchBar';
 import Search from './Search/Search';
+import Theme from './Theme/Theme';
 
 class Navigation extends React.Component {
 
@@ -37,14 +38,21 @@ class Navigation extends React.Component {
 
 
     render() {
+        const darkStyle = { background: "#2c698d" }
+        const liteStyle = { background: "#121212" }
+        const style = this.props.theme ? darkStyle : liteStyle;
+
+        const DarkBtn = "DarkBtn_Menu", LiteBtn = "Btn_Menu";
+        const Btn = this.props.theme ? LiteBtn : DarkBtn;
+
         return (
             <React.Fragment>
-                <Navbar className="Nav">
+                <Navbar className="Nav" style={style}>
                     <Nav className="container-fluid" >
                         <Col sm="" md="3" >
                             <NavItem>
                                 <Link to="/"><img className="NavLogo" src={logo} /></Link>
-                                {this.props.isMobile ? null : <Button className="Btn_Menu float-right" onClick={this.showContentHandler.bind(this)}><i className="fas fa-bars"></i></Button>}
+                                {this.props.isMobile ? null : <Button className={Btn + " float-right"} onClick={this.showContentHandler.bind(this)}><i className="fas fa-bars"></i></Button>}
                             </NavItem>
                         </Col>
                         {this.state.showContent ? <React.Fragment>
@@ -58,7 +66,15 @@ class Navigation extends React.Component {
                                     <Row>
                                         <NavOptions name="Trending" />
                                         <NavOptions name="WatchList" />
-                                        <NavOptions name="SwitchMode" />
+                                        <Col sm="" md="3" >
+                                            <a href={undefined}>
+                                                <NavItem className="text-md-center mt-1">
+                                                    <Theme />
+                                                </NavItem>
+                                            </a>
+                                        </Col>
+                                        {/* <NavItem className="align-bottom New">
+                                        </NavItem> */}
                                     </Row>
                                 </Col>
                             </React.Fragment>
@@ -81,6 +97,7 @@ class Navigation extends React.Component {
 const mapStateToProps = state => {
     return {
         isMobile: state.isMobile,
+        theme: state.theme,
     }
 }
 

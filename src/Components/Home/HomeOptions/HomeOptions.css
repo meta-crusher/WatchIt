@@ -4,7 +4,19 @@
     border-radius: 30px;
 }
 
+.DarkHomeNavOptions {
+    border: 2px solid #121212;
+    padding: 5px;
+    border-radius: 30px;
+}
+
 .OptionsHome {
+    padding: 8px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.DarkOptionsHome {
     padding: 8px;
     cursor: pointer;
     margin-right: 20px;
@@ -19,8 +31,23 @@
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+.DarkOptionsHome:hover {
+    border-bottom: 1px groove #121212;
+    border-top: 1px groove #121212;
+    margin-bottom: -2px;
+    border-radius: 20px;
+    --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 .SelectedHome {
     background-color: #272643;
+    border-radius: 20px;
+    color: white;
+}
+
+.DarkSelectedHome {
+    background-color: #121212;
     border-radius: 20px;
     color: white;
 }
@@ -29,8 +56,13 @@
     .HomeNavOptions {
         font-size: small;
     }
-
-    .OptionsHome{
+    .DarkHomeNavOptions {
+        font-size: smaller;
+    }
+    .OptionsHome {
+        margin-right: 5px;
+    }
+    .DarkOptionsHome {
         margin-right: 5px;
     }
 }

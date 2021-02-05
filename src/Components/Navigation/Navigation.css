@@ -7,13 +7,16 @@
 }
 
 .NavLogo {
-    width: 30%;
+    width: 50%;
 }
 
 @media(max-width: 600px) {
     .Search {
         margin-top: 15px;
         margin-bottom: 10px;
+    }
+    .NavLogo {
+        width: 45%;
     }
 }
 
@@ -23,6 +26,14 @@
 
 .Btn_Menu:hover {
     background-color: #272643;
+}
+
+.DarkBtn_Menu {
+    background-color: #404040;
+}
+
+.DarkBtn_Menu:hover {
+    background-color: #404040;
 }
 
 .New {

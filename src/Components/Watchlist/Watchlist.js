@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Row } from 'reactstrap';
 import WatchData from './WatchData/WatchData';
 
@@ -24,26 +23,26 @@ const Watchlist = () => {
     }) : null;
     return (
         <React.Fragment>
-            <Row className="mt-3 ml-3 mb-3">
-                <Col tag="h3">
-                    Select your added
+                <Row className="mt-3 ml-3 mb-3">
+                    <Col tag="h3">
+                        Select your added
                 </Col>
-                <Col md="9">
-                    <Dropdown isOpen={dropdown} toggle={() => setDropdown(!dropdown)}>
-                        <DropdownToggle caret>
-                            {show.toUpperCase()}
-                        </DropdownToggle>
-                        <DropdownMenu>
-                            <DropdownItem header>Select Type</DropdownItem>
-                            <DropdownItem onClick={() => setShow('movie')}>MOVIE</DropdownItem>
-                            <DropdownItem onClick={() => setShow('tv')}>TV</DropdownItem>
-                        </DropdownMenu>
-                    </Dropdown>
-                </Col>
-            </Row>
-            {
-                show === 'movie' ? m : t
-            }
+                    <Col md="9">
+                        <Dropdown isOpen={dropdown} toggle={() => setDropdown(!dropdown)}>
+                            <DropdownToggle caret>
+                                {show.toUpperCase()}
+                            </DropdownToggle>
+                            <DropdownMenu>
+                                <DropdownItem header>Select Type</DropdownItem>
+                                <DropdownItem onClick={() => setShow('movie')}>MOVIE</DropdownItem>
+                                <DropdownItem onClick={() => setShow('tv')}>TV</DropdownItem>
+                            </DropdownMenu>
+                        </Dropdown>
+                    </Col>
+                </Row>
+                {
+                    show === 'movie' ? m : t
+                }
         </React.Fragment>
     );
 }

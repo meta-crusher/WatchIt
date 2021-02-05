@@ -1,8 +1,10 @@
 import axios from 'axios';
 import React from 'react';
+import { connect } from 'react-redux';
 import noImgPoster from './../../../assets/movIMG/noImgPoster.jpg';
 import { Row, Col, CardImg, ListGroupItem, Badge } from 'reactstrap';
 import WatchBtn from './../WatchBtn/WatchBtn';
+
 
 class WatchData extends React.Component {
 
@@ -28,15 +30,20 @@ class WatchData extends React.Component {
     render() {
         const imgURL = this.state.data.poster_path != null ? ('https://image.tmdb.org/t/p/w200/' + this.state.data.poster_path) : noImgPoster;
         const istv = this.type === 'tv' ? true : false;
+        const DarkStyle = { background: "#404040" };
+        const LiteStyle = { background: "White" };
+        const style = this.props.theme ? LiteStyle : DarkStyle;
         return (
-            <ListGroupItem>
+            <ListGroupItem style={style}>
                 <Row>
                     <Col xs="6" md="1">
-                        <CardImg src={imgURL} />
+                        <a href={'/' + this.type + '/' + this.id}>
+                            <CardImg src={imgURL} />
+                        </a>
                     </Col>
                     <Col>
                         <Row >
-                            <Col md="12" className="mb-2">
+                            <Col md="12" className="mb-2" tag="h6">
                                 {istv ? this.state.data.name : this.state.data.title}
                             </Col>
                             <Col md="12" className="mb-2">
@@ -56,4 +63,9 @@ class WatchData extends React.Component {
     }
 }
 
-export default WatchData;
+const mapStateToProps = state => {
+    return {
+        theme: state.theme,
+    }
+}
+export default connect(mapStateToProps)(WatchData);

@@ -14,8 +14,8 @@ a {
 
 .activeInherit {
     color: white;
-    background-color: inherit;
-    border-radius: 10px;
+    /* background-color: inherit; */
+    /* border-radius: 10px; */
     padding: 10px;
 }
 
