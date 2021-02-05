@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Button } from 'reactstrap';
+import React, { useState } from 'react';
+import { Button, Tooltip } from 'reactstrap';
 
 const addHandler = (type, id) => {
 
@@ -25,24 +25,32 @@ const removeHandler = (type, id) => {
 
 const WatchBtn = props => {
 
+    const [tooltipOpen, setTooltipOpen] = useState(false);
+    const toggle = () => setTooltipOpen(!tooltipOpen);
+
     let watchArr = JSON.parse(localStorage.getItem(props.type))
     watchArr = (watchArr !== null && props.id in watchArr) ? false : true
     const [add, setAdd] = useState(watchArr);
 
     return (
-        <Button
-            className="ThumbnailBtn"
-            onClick={add ? () => {
-                setAdd(!add)
-                addHandler(props.type, props.id)
-            }
-                : () => {
+        <React.Fragment>
+            <Button id="WishList"
+                className="ThumbnailBtn"
+                onClick={add ? () => {
                     setAdd(!add)
-                    removeHandler(props.type, props.id)
+                    addHandler(props.type, props.id)
                 }
-            }>
-            {add ? <div>Add</div> : <div>Remove</div>}
-        </Button>
+                    : () => {
+                        setAdd(!add)
+                        removeHandler(props.type, props.id)
+                    }
+                }>
+                {add ? <div>Add <i className="fas fa-plus-square"></i></div> : <div>Remove <i className="fas fa-trash-alt"></i></div>}
+                <Tooltip placement="bottom" isOpen={tooltipOpen} target="WishList" toggle={toggle}>
+                    Add/Remove items from Wishlist
+                </Tooltip>
+            </Button>
+        </React.Fragment>
     );
 }
 

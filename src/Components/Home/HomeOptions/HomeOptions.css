@@ -54,7 +54,7 @@
 
 @media(max-width:768px) {
     .HomeNavOptions {
-        font-size: small;
+        font-size: smaller;
     }
     .DarkHomeNavOptions {
         font-size: smaller;

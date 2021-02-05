@@ -161,8 +161,8 @@ class InfoPage extends React.Component {
                                 <Col className="mt-2">
                                     <WatchBtn type={this.type} id={this.id} />
                                     {this.isTV ? null :
-                                        <a href={this.state.playURL} target="blank">
-                                            <Button className="ThumbnailBtn ml-3">Play</Button>
+                                        <a href={this.state.playURL} target="blank">           
+                                            <Button className="ThumbnailBtn ml-3">Play <i className="fas fa-play ml-1"></i></Button>
                                         </a>
                                     }
                                 </Col>

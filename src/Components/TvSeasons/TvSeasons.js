@@ -3,6 +3,7 @@ import noImgPoster from './../../assets/movIMG/noImgPoster.jpg';
 
 import axios from 'axios';
 import React from 'react';
+import { connect } from 'react-redux';
 import { Col, CardImg, Jumbotron, Row } from 'reactstrap';
 
 import SeasonInfo from './SeasonInfo/SeasonInfo';
@@ -60,9 +61,12 @@ class TvSeasons extends React.Component {
                 <SeasonInfo key={index} data={content} id={this.id} vURL={this.state.playURL + '&e=' + (index + 1)} />
             )
         }) : null;
+
+        const lite = { background: "#b1d3e7" }, dark = { background: "#181818" }
+        const style = this.props.theme ? lite : dark
         return (
             <React.Fragment>
-                <Jumbotron className="SeasonInfoMain">
+                <Jumbotron style={style}>
                     <Row>
                         <Col xs="6" md="2" >
                             <CardImg
@@ -84,4 +88,10 @@ class TvSeasons extends React.Component {
     }
 }
 
-export default TvSeasons;
+const mapStateToProps = state => {
+    return {
+        theme: state.theme,
+    }
+}
+
+export default connect(mapStateToProps)(TvSeasons);

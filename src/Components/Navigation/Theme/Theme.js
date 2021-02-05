@@ -27,7 +27,6 @@ const Theme = () => {
                     }} />
                 <span className="slider round"></span>
             </label>
-
             {/* <Button
                 onClick={() => {
                     setSwitchDark(!switchDark)
