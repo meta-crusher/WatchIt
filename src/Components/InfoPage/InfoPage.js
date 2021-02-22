@@ -16,7 +16,7 @@ class InfoPage extends React.Component {
     endpoint = 'https://api.themoviedb.org/3/';
     type = this.props.match.params.type;
     id = this.props.match.params.id;
-    api = 'db247c4fb5373ec3fc33ba76868459bb';
+    api = process.env.REACT_APP_API;
     tail = '&language=en-US';
     similarURL = this.endpoint + this.type + '/' + this.id + '/similar?api_key=' + this.api + this.tail;
     recommendURL = this.endpoint + this.type + '/' + this.id + '/recommendations?api_key=' + this.api + this.tail;
@@ -27,8 +27,8 @@ class InfoPage extends React.Component {
 
     // Video URL
     vHeader = 'https://vsrequest.video/request.php?key='
-    vAPI = 'dnMmYVjoshGaTtRO'
-    secretKey = 'stpqicygwhuvv6z7ycwwc79tfef4st'
+    vAPI = process.env.REACT_APP_VAPI
+    secretKey = process.env.REACT_APP_SECRET_KEY
     vURL = this.vHeader + this.vAPI + '&secret_key=' + this.secretKey + '&video_id=' + this.id + '&tmdb=1&tv=' + this.isTV + '&s=0&ip=';
 
     state = {

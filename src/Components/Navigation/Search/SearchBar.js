@@ -8,7 +8,7 @@ class SearchBar extends React.Component {
 
 
     header = 'https://api.themoviedb.org/3/search/multi?api_key=';
-    api = 'db247c4fb5373ec3fc33ba76868459bb';
+    api = process.env.REACT_APP_API;
     mid = '&language=en-US&query=';
     end = '&page=1&include_adult=false';
     state = {

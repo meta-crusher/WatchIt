@@ -19,15 +19,15 @@ class TvSeasons extends React.Component {
     id = this.props.match.params.seriesid;
     seasonid = this.props.match.params.seasonid;
     header = 'https://api.themoviedb.org/3/tv/';
-    api = 'db247c4fb5373ec3fc33ba76868459bb';
+    api = process.env.REACT_APP_API;
     url = this.header + this.id + '/season/' + this.seasonid + '?api_key=' + this.api + '&language=en-US';
     imgEndpoint = 'https://image.tmdb.org/t/p/w500/';
 
     // Video URL
     vHeader = 'https://vsrequest.video/request.php?key='
-    vAPI = 'dnMmYVjoshGaTtRO'
-    secretKey = 'stpqicygwhuvv6z7ycwwc79tfef4st'
-    vURL = this.vHeader + this.vAPI + '&secret_key=' + this.secretKey + '&video_id=' + this.id + '&tmdb=1&tv=1&s=1&ip=';
+    vAPI = process.env.REACT_APP_VAPI
+    secretKey = process.env.REACT_APP_SECRET_KEY
+    vURL = this.vHeader + this.vAPI + '&secret_key=' + this.secretKey + '&video_id=' + this.id + '&tmdb=1&tv=1&s='+this.seasonid+'&ip=';
 
     componentDidMount() {
 

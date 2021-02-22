@@ -10,7 +10,7 @@ class Search extends React.Component {
     }
 
     header = 'https://api.themoviedb.org/3/search/multi?api_key=';
-    api = 'db247c4fb5373ec3fc33ba76868459bb';
+    api = process.env.REACT_APP_API;
     mid = '&language=en-US&query=';
     query = this.props.match.params.query;
     end = '&page=1&include_adult=false';
@@ -28,9 +28,9 @@ class Search extends React.Component {
     }
 
     render() {
-        const searchItems = this.state.data ? this.state.data.map(content => {
+        const searchItems = this.state.data ? this.state.data.map((content, index) => {
             return (
-                content.media_type === 'tv' || content.media_type === 'movie' ? <SearchOptions data={content} /> : null
+                content.media_type === 'tv' || content.media_type === 'movie' ? <SearchOptions key={index} data={content} /> : null
             );
         }) : null;
         return (

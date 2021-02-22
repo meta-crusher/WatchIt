@@ -1,5 +1,4 @@
 import './NavOptions.css'
-import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { Col, NavItem } from 'reactstrap';
 

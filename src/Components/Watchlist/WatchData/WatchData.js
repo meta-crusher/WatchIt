@@ -15,7 +15,7 @@ class WatchData extends React.Component {
     header = 'https://api.themoviedb.org/3/';
     type = this.props.type;
     id = this.props.id;
-    api = 'db247c4fb5373ec3fc33ba76868459bb';
+    api = process.env.REACT_APP_API;
     url = this.header + this.type + '/' + this.id + '?api_key=' + this.api + '&language=en-US';
 
     componentDidMount() {

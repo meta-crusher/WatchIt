@@ -2,7 +2,6 @@ import './Theme.css';
 
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
-import { Button } from "reactstrap"
 
 const switchHandler = (val) => {
     val ? localStorage.setItem('theme', 'dark') : localStorage.setItem('theme', 'lite')
@@ -20,21 +19,14 @@ const Theme = () => {
         <>
             <label className="switch">
                 <input type="checkbox" checked={switchDark}
-                    onClick={() => {
+                    onChange={() => {
                         setSwitchDark(!switchDark)
                         dispatch({ type: "THEME" })
                         switchHandler(switchDark)
                     }} />
                 <span className="slider round"></span>
             </label>
-            {/* <Button
-                onClick={() => {
-                    setSwitchDark(!switchDark)
-                    dispatch({ type: "THEME" })
-                    switchHandler(switchDark)
-                }}>
-                Switch
-        </Button> */}
+            
         </>
     );
 }

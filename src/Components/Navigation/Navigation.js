@@ -51,7 +51,7 @@ class Navigation extends React.Component {
                     <Nav className="container-fluid" >
                         <Col sm="" md="3" >
                             <NavItem>
-                                <Link to="/"><img className="NavLogo" src={logo} /></Link>
+                                <Link to="/"><img className="NavLogo" alt="logo" src={logo} /></Link>
                                 {this.props.isMobile ? null : <Button className={Btn + " float-right"} onClick={this.showContentHandler.bind(this)}><i className="fas fa-bars"></i></Button>}
                             </NavItem>
                         </Col>
@@ -67,14 +67,12 @@ class Navigation extends React.Component {
                                         <NavOptions name="Trending" />
                                         <NavOptions name="WatchList" />
                                         <Col sm="" md="3" >
-                                            <a href={undefined}>
+                                            {/* <a href={undefined}> */}
                                                 <NavItem className="text-md-center mt-1">
                                                     <Theme />
                                                 </NavItem>
-                                            </a>
+                                            {/* </a> */}
                                         </Col>
-                                        {/* <NavItem className="align-bottom New">
-                                        </NavItem> */}
                                     </Row>
                                 </Col>
                             </React.Fragment>

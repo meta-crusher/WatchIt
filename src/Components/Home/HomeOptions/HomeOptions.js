@@ -22,7 +22,7 @@ class HomeOptions extends React.Component {
         this.header = 'https://api.themoviedb.org/3/'
         this.menu = this.props.menu === 'trending' ? 'trending/' : '';
         this.type = this.props.type + '/'
-        this.api = '?api_key=db247c4fb5373ec3fc33ba76868459bb&language=en-US'
+        this.api = '?api_key='+process.env.REACT_APP_API+'&language=en-US'
         this.currArr = this.props.Arr;
         this.currArrTitle = this.props.ArrTitle;
         this.url = []
@@ -42,6 +42,7 @@ class HomeOptions extends React.Component {
                     }
                 })
             })
+            .catch(err=>{})
             i++;
         }
     }
